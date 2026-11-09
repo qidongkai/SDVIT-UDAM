@@ -1,0 +1,28 @@
+# Core deep learning stack. Versions follow Section 3.5.1 of the thesis.
+torch==1.13.1
+torchvision==0.14.1
+timm>=0.9.0
+transformers>=4.30
+
+# Numerical and statistical utilities.
+numpy>=1.24.3
+scipy>=1.10.0
+pandas>=2.0.2
+
+# Image I/O and transforms.
+Pillow>=9.5.0
+opencv-python>=4.8.0
+
+# Configuration and serialization.
+pyyaml>=6.0
+
+# ONNX export and operator compatibility check.
+onnx>=1.14.0
+onnxruntime>=1.15.0
+
+# FLOPs and parameter counting for PCR / CCR.
+thop>=0.1.1
+
+# Progress and visualisation.
+tqdm>=4.65.0
+matplotlib>=3.7.0

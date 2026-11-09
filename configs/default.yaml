@@ -1,0 +1,64 @@
+model:
+  embed_dim: 384
+  depth: 6
+  num_heads: 6
+  patch_size: 16
+  img_size: 512
+  mlp_ratio: 4.0
+  num_classes: 16
+  prune_layers: [1, 2, 3, 4]
+  alpha_attn: 1.0
+  lambda_sd: 0.3
+  min_keep_ratio: 0.35
+  max_keep_ratio: 0.85
+  use_fixed_thr: false
+  fixed_ratio: 0.58
+  share_label_space: true
+
+train:
+  batch_size_per_gpu: 8
+  grad_accum_steps: 2
+  epochs: 120
+  warmup_epochs: 5
+  lr: 1.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 1.0e-5
+  seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  num_workers: 8
+  amp: true
+  clip_grad: 1.0
+
+udam:
+  tau_p: 0.9
+  tau_H: 1.5
+  rho_min: 0.1
+  fallback_floor: 0.7
+  alpha_mmd: 1.0
+  K_views: 4
+  gamma_floor: 0.2
+  feature_bank_size: 800
+  per_class_bank: 50
+  consistency_thr: 0.8
+  mmd_subset: 512
+  temporal_stability_thr: 0.9
+
+der:
+  w1: 0.3
+  w2: 0.5
+  w3: 0.2
+
+data:
+  root_cityscapes: /data/cityscapes
+  root_voc: /data/VOC2012
+  root_ar: /data/AR-Private-20K
+  source: cityscapes
+  target: ar
+  split: [train, val, test]
+  ar_scene_meta: /data/AR-Private-20K/scene_meta.json
+
+deploy:
+  onnx_opset: 17
+  snapdragon_snpe: /opt/snpe
+  ar_glasses_trt: /usr/src/tensorrt
+  thermal_latency_thr: 20.0
+  thermal_fallback_res: 448
